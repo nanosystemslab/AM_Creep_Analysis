@@ -1,21 +1,14 @@
 # AM_Creep_Analysis
 
-[![PyPI](https://img.shields.io/pypi/v/AM_Creep_Analysis.svg)][pypi status]
-[![Status](https://img.shields.io/pypi/status/AM_Creep_Analysis.svg)][pypi status]
 [![Python Version](https://img.shields.io/pypi/pyversions/AM_Creep_Analysis)][pypi status]
 [![License](https://img.shields.io/pypi/l/AM_Creep_Analysis)][license]
 
 [![Read the documentation at https://AM_Creep_Analysis.readthedocs.io/](https://img.shields.io/readthedocs/AM_Creep_Analysis/latest.svg?label=Read%20the%20Docs)][read the docs]
-[![Tests](https://github.com/mattnakamura/AM_Creep_Analysis/workflows/Tests/badge.svg)][tests]
-[![Codecov](https://codecov.io/gh/mattnakamura/AM_Creep_Analysis/branch/main/graph/badge.svg)][codecov]
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][pre-commit]
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
 
-[pypi status]: https://pypi.org/project/AM_Creep_Analysis/
 [read the docs]: https://AM_Creep_Analysis.readthedocs.io/
-[tests]: https://github.com/mattnakamura/AM_Creep_Analysis/actions?workflow=Tests
-[codecov]: https://app.codecov.io/gh/mattnakamura/AM_Creep_Analysis
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [black]: https://github.com/psf/black
 
