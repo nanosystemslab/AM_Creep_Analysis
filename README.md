@@ -1,9 +1,7 @@
 # AM_Creep_Analysis
 
 [![Read the documentation at https://AM_Creep_Analysis.readthedocs.io/](https://img.shields.io/readthedocs/AM_Creep_Analysis/latest.svg?label=Read%20the%20Docs)][read the docs]
-
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
 [![Python Versions](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12-blue)](#)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][pre-commit]
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
