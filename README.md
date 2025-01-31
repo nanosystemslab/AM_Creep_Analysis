@@ -2,15 +2,13 @@
 
 [![Read the documentation at https://AM_Creep_Analysis.readthedocs.io/](https://img.shields.io/readthedocs/AM_Creep_Analysis/latest.svg?label=Read%20the%20Docs)][read the docs]
 
-[![License](https://img.shields.io/github/license/nanosystemslab/AM_Creep_Analysis?style=flat)][license]
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-[license]: https://github.com/nanosystemslab/AM_Creep_Analysis/blob/main/LICENSE
 [![Python Versions](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12-blue)](#)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][pre-commit]
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
 
 [read the docs]: https://AM_Creep_Analysis.readthedocs.io/
-[license]: https://github.com/nanosystemslab/AM_Creep_Analysis/blob/main/LICENSE
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [black]: https://github.com/psf/black
 
