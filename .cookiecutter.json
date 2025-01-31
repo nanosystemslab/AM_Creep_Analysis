@@ -1,0 +1,18 @@
+{
+  "_checkout": null,
+  "_output_dir": "/Users/mnakamura/Desktop",
+  "_repo_dir": "/Users/mnakamura/.cookiecutters/cookiecutter-nanosystemslab",
+  "_template": "gh:nanosystemslab/cookiecutter-nanosystemslab",
+  "author": "Matthew Nakamura",
+  "copyright_year": "2025",
+  "development_status": "Development Status :: 4 - Beta",
+  "email": "matthew.t.nakamura@gmail.com",
+  "friendly_name": "AM_Creep_Analysis",
+  "github_user": "mattnakamura",
+  "license": "GPL-3.0",
+  "package_name": "AM_Creep_Analysis",
+  "project_name": "AM_Creep_Analysis",
+  "project_version": "0.0.1",
+  "python_version_max": "4.0",
+  "python_version_min": "3.9"
+}
