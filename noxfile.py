@@ -3,6 +3,9 @@
 import shutil
 from pathlib import Path
 import nox
+from nox.sessions import Session
+
+session = nox.session
 
 package = "AM_Creep_Analysis"
 python_versions = ["3.12", "3.11", "3.10", "3.9"]
