@@ -1,5 +1,5 @@
 """Nox sessions."""
-
+import os 
 import shutil
 from pathlib import Path
 import nox
@@ -10,7 +10,13 @@ session = nox.session
 package = "AM_Creep_Analysis"
 python_versions = ["3.12", "3.11", "3.10", "3.9"]
 nox.needs_version = ">= 2021.6.6"
-nox.options.sessions = ("docs-build", "docs")
+nox.options.sessions = ("docs-build", "docs", "mypy")
+
+@session(python=python_versions)
+def mypy(session: Session) -> None:
+    """Run mypy static type checks."""
+    session.install("mypy")
+    session.run("mypy", "src/")
 
 @session(name="docs-build", python=python_versions[0])
 def docs_build(session: Session) -> None:
