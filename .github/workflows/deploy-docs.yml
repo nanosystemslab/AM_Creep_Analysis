@@ -27,7 +27,7 @@ jobs:
           name: documentation
           path: docs/_build/html
 
-      - name: Debug: Verify downloaded docs before deployment
+      - name: Verify downloaded docs before deployment
         run: |
           echo "Checking contents of downloaded docs..."
           ls -R docs/_build/html || echo "❌ Docs directory not found"
