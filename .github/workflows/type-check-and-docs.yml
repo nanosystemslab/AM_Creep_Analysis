@@ -15,6 +15,7 @@ jobs:
           - { python: "3.12", os: "ubuntu-latest", session: "mypy" }
           - { python: "3.11", os: "ubuntu-latest", session: "mypy" }
           - { python: "3.10", os: "ubuntu-latest", session: "mypy" }
+          - { python: "3.12", os: "ubuntu-latest", session: "docs-build" }  # Added docs-build
 
     env:
       NOXSESSION: ${{ matrix.session }}
@@ -48,11 +49,11 @@ jobs:
 
       - name: Run Nox for Type Checking & Docs
         run: |
-          nox --python=${{ matrix.python }}
+          nox --python=${{ matrix.python }} --session=${{ matrix.session }}
 
       - name: Upload documentation
         if: matrix.session == 'docs-build'
         uses: actions/upload-artifact@v4
         with:
           name: documentation
-          path: docs/_build
+          path: docs/_build/html
