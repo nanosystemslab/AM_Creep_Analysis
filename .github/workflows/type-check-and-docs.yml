@@ -51,7 +51,7 @@ jobs:
         run: |
           nox --python=${{ matrix.python }} --session=${{ matrix.session }}
 
-      - name: Debug: List built documentation files
+      - name: List built documentation files
         if: matrix.session == 'docs-build'
         run: |
           echo "Checking contents of docs/_build..."
