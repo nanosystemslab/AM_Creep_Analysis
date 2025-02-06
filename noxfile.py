@@ -48,3 +48,10 @@ def docs(session: Session) -> None:
         shutil.rmtree(build_dir)
 
     session.run("sphinx-autobuild", *args)
+
+@session(python=python_versions)
+def typeguard(session: Session) -> None:
+    """Run Typeguard to check runtime type correctness."""
+    session.install("typeguard")
+    session.install(".")  # Ensure your package is installed for type checking
+    session.run("pytest", "--typeguard-packages=AM_Creep_Analysis")
