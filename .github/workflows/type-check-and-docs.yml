@@ -51,9 +51,12 @@ jobs:
         run: |
           nox --python=${{ matrix.python }} --session=${{ matrix.session }}
 
+      - name: Debug: List built documentation files
+        run: ls -R docs/_build || echo "Docs directory not found"
+
       - name: Upload documentation
         if: matrix.session == 'docs-build'
         uses: actions/upload-artifact@v4
         with:
           name: documentation
-          path: /home/runner/work/AM_Creep_Analysis/AM_Creep_Analysis/docs/_build/html
+          path: docs/_build
