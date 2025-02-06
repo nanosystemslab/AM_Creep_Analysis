@@ -51,14 +51,12 @@ jobs:
         run: |
           nox --python=${{ matrix.python }} --session=${{ matrix.session }}
 
-      # 🔍 Debugging: Check if docs were built before uploading
       - name: Debug: List built documentation files
         if: matrix.session == 'docs-build'
         run: |
           echo "Checking contents of docs/_build..."
           ls -R docs/_build || echo "❌ Docs directory not found"
 
-      # ✅ Upload the generated documentation
       - name: Upload documentation
         if: matrix.session == 'docs-build'
         uses: actions/upload-artifact@v4
