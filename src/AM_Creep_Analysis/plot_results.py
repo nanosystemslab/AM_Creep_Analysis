@@ -43,8 +43,8 @@ def parse_command_line():
     parser.add_argument("-y", "--y_axis", dest="y_axis",
                         nargs='+', type=int,
                         default=None, required=False, help="y axis parameter")
-    parser.add_argument("--plot_stats", action="store_true", 
-                        help="plot statistics")
+    parser.add_argument("--plot_show", dest="plot_show", action="store_true", 
+                        help="plot show")
     ret = vars(parser.parse_args())
     ret["verbosity"] = max(0, 30 - 10 * ret["verbosity"])
     return ret
@@ -62,7 +62,7 @@ def load_file(filepath):
     df.meta.filepath = Path(filepath).stem
     return df
 
-def plot_single(file, x_axis=None, y_axis=None):
+def plot_single(file, x_axis=None, y_axis=None, plot_show=False):
     df = load_file(file)  # Load file into DataFrame
     filename = df.meta.filepath 
     
@@ -114,6 +114,9 @@ def plot_single(file, x_axis=None, y_axis=None):
     # Save the plot
     plt.savefig(output_file, dpi=300)
     print(f"Plot saved as: {output_file}")
+    
+    if plot_show: 
+        plt.show()
 
 
 
@@ -122,7 +125,7 @@ def main():
     setup_logging(cmd_args['verbosity'])
     files_passed = len(cmd_args['input'])
     if files_passed == 1: 
-        plot_single(cmd_args['input'][0], x_axis=cmd_args["x_axis"], y_axis=cmd_args["y_axis"])
+        plot_single(cmd_args['input'][0], x_axis=cmd_args["x_axis"], y_axis=cmd_args["y_axis"], plot_show = cmd_args['plot_show'])
     else: 
         print("more files then I can do right now")
 
