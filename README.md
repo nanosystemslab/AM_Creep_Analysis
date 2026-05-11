@@ -1,62 +1,89 @@
-# AM_Creep_Analysis
+# AM Creep Analysis Framework
 
-[![Read the documentation at https://AM_Creep_Analysis.readthedocs.io/](https://img.shields.io/readthedocs/AM_Creep_Analysis/latest.svg?label=Read%20the%20Docs)][read the docs]
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Python Versions](https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12-blue)](#)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][pre-commit]
-[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[read the docs]: https://AM_Creep_Analysis.readthedocs.io/
-[pre-commit]: https://github.com/pre-commit/pre-commit
-[black]: https://github.com/psf/black
+Python framework for analyzing viscoelastic creep behavior in additively manufactured
+Tough1500 photopolymer resin from nanoindentation, bulk compression, and tensile testing.
+This release archives the analysis and plotting pipeline used to produce the
+creep, compliance, and Time-Stress Superposition (TSSP) master-curve figures of
+the accompanying thesis chapter.
 
-## Features
+## Setup
 
-- TODO
-
-## Requirements
-
-- TODO
-
-## Installation
-
-You can install _AM_Creep_Analysis_ via [pip] from [PyPI]:
-
-```console
-$ pip install AM_Creep_Analysis
+```bash
+cd AM_Creep_Analysis
+pip install numpy pandas scipy matplotlib lmfit
 ```
 
-## Usage
+## Quick Usage
 
-Please see the [Command-line Reference] for details.
+```bash
+# Plot nanoindentation displacement vs time
+python creepycrawlies.py -d nano/103/ -i out/ -x 0 -y 1
 
-## Contributing
+# Calculate and plot creep compliance (Berkovich)
+python creepycrawlies.py -d nano/103/ -i out/ -x 0 -y compliance --calculate_compliance
 
-Contributions are very welcome.
-To learn more, see the [Contributor Guide].
+# Overlay multiple stress levels
+python creepycrawlies.py -d nano/103-17.5 nano/103-20 nano/103-22.5 \
+    -i out/ -x 0 -y 1 --overlay
+
+# Bulk 24-hour creep overlay
+python src/bulk/plot_bulk_24hrs.py
+
+# Bulk TSSP master curve
+python src/tssp_master.py
+
+# Nanoindentation TSSP master curve
+python src/nanoindent/nano_master.py
+```
+
+## Key Modules
+
+- **`src/models.py`** — 16 viscoelastic creep models (Burgers, generalized Kelvin-Voigt,
+  Prony series, Peng stress-lock, Peng + viscoplastic dashpot)
+- **`src/utils.py`** — Compliance calculators for flat punch, Berkovich, conical,
+  frustum probes
+- **`creepycrawlies.py`** — Main CLI for nanoindentation analysis with caching and
+  SEM error bars
+- **`src/tssp_master.py`** — Bulk TSSP master-curve construction (shift factors +
+  WLF-style fit + ASTM 24-hour overlay)
+- **`src/nanoindent/nano_master.py`** — Nanoindentation TSSP master-curve construction
+
+## Documentation
+
+- **[SCRIPTS.md](SCRIPTS.md)** — Inventory of every analysis/plotting script in this
+  release with the thesis figures it produces and how to run it
+- **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** — Full project structure, modules,
+  data conventions, and material constants
+
+## Citation
+
+If you use this software, please cite it via the metadata in
+[`CITATION.cff`](CITATION.cff). A versioned DOI is published on
+Zenodo for each tagged release.
+
+```
+Roche, E. (2026). AM Creep Analysis: Viscoelastic Creep Analysis Framework
+for Additively Manufactured Polymers (Version 1.0.0) [Computer software].
+Zenodo. https://doi.org/<DOI>
+```
+
+(Replace `<DOI>` with the Zenodo DOI minted at release time.)
 
 ## License
 
-Distributed under the terms of the [GPL 3.0 license][license],
-_AM_Creep_Analysis_ is free and open source software.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file
+for details.
 
-## Issues
+## References
 
-If you encounter any problems,
-please [file an issue] along with a detailed description.
-
-## Credits
-
-This project was generated from [@nanosystemslab]'s [Nanosystems Lab Python Cookiecutter] template.
-
-[@nanosystemslab]: https://github.com/nanosystemslab
-[pypi]: https://pypi.org/
-[Nanosystems Lab Python Cookiecutter]: https://github.com/nanosystemslab/cookiecutter-nanosystemslab
-[file an issue]: https://github.com/mattnakamura/AM_Creep_Analysis/issues
-[pip]: https://pip.pypa.io/
-
-<!-- github-only -->
-
-[license]: https://github.com/mattnakamura/AM_Creep_Analysis/blob/main/LICENSE
-[contributor guide]: https://github.com/mattnakamura/AM_Creep_Analysis/blob/main/CONTRIBUTING.md
-[command-line reference]: https://AM_Creep_Analysis.readthedocs.io/en/latest/usage.html
+- Peng et al. (2015) — Nanoindentation creep of nonlinear viscoelastic polypropylene,
+  *Polymer Testing* 43:38–43
+- Thapa & Cheng (2024) — Flat punch viscoelastic solution
+- Oliver & Pharr (1992) — Hardness and elastic modulus, *J. Mater. Res.* 7(6):1564–1583
+- Wang & Fancey (2017) — Application of time–stress superposition to viscoelastic
+  behavior of polyamide 6,6 fiber and its "true" elastic modulus,
+  *Mechanics of Time-Dependent Materials*
+- Jazouli et al. (2005) — Application of time–stress equivalence to nonlinear creep
+  of polycarbonate, *Polymer Testing* 24(4):463–467

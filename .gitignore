@@ -1,10 +1,108 @@
-.mypy_cache/
-/.coverage
-/.coverage.*
-/.nox/
-/.python-version
-/.pytype/
-/dist/
-/docs/_build/
-/src/*.egg-info/
+# Python
 __pycache__/
+*.py[cod]
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+.coverage
+.coverage.*
+.nox/
+.pytype/
+dist/
+build/
+.python-version
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Repo-specific caches and outputs
+.cache/
+out/
+bulk/out/
+bulk/.cache/
+docs/_build/
+
+# Raw data (not redistributed; available on request)
+nano/
+bulk/bulkdata/
+bulk/TSSP/
+bulk/video/
+bulk/ASRMD638TypeI/0/
+bulk/ASRMD638TypeI/45/
+bulk/ASRMD638TypeI/out/
+bulk/ASTMD638TypeV/
+ASTMD638TypeV/
+data/
+
+# Notebooks / large media not part of code release
+notebooklm_notebooks/
+"NI methods/"
+"method papers/"
+fem_nanoindent/
+old/
+temp_test/
+
+# Credentials and tokens
+credentials.json
+token.json
+*.key
+*.pem
+
+# Misc binaries / generated docs
+*.pdf
+*.aux
+*.log
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+
+# Tex auxiliary
+*.fls
+*.fdb_latexmk
+*.out
+
+# Out-of-scope content (not part of this analysis release)
+# Thesis background / illustration scripts (live alongside this code but are excluded per SCRIPTS.md)
+/bg_*.py
+/*_diagram.py
+/joint_diagrams.py
+/nanoindent_method_diagrams.py
+/sla_title_image.py
+/skipped_entries.csv
+/Creep Lit Review - Lit Review-2.csv
+/NANO_MASTER_CLI.md
+# Per-method fit scripts and supplementary plotters not archived in this release
+src/nanoindent/fit_*.py
+src/nanoindent/plot_nano_103_*.py
+src/nanoindent/compare_peng_parameters.py
+src/bulk/fit_bulk_*.py
+src/bulk/plot_bulk_pp_300s.py
+src/bulk/test_mastercurves.py
+src/bulkplot.py
+src/plot_tssp_sync.py
+src/tssp_batch.py
+src/tssp_sync.py
+src/tssp_master.py.bak
+src/poisson_*.py
+src/scale_calibrate.py
+src/dot_correct.py
+src/deformation_start.py
+src/edge_calibrate.py
+src/tdm_*.py
+src/qc/
+src/tensile/
+src/tools/
+src/py.typed
+scripts/berk_shift_factor.py
+scripts/fastener_*.py
+scripts/frustum_*.py
+scripts/plot_individual_compliance.py
+scripts/sla_diagram.py
+scripts/tools/
+bulk/src/
+tests/
