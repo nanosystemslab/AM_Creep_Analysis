@@ -11,8 +11,8 @@ abstract: >-
   master-curve construction pipeline.
 type: software
 authors:
-  - given-names: Ethan
-    family-names: Roche
+  - given-names: Ethan Jon
+    family-names: Rocheville
     email: Ethan@rochevilles.com
     affiliation: "Nanosystems Lab"
 keywords:
