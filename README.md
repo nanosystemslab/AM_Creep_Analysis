@@ -64,7 +64,7 @@ If you use this software, please cite it via the metadata in
 Zenodo for each tagged release.
 
 ```
-Roche, E. (2026). AM Creep Analysis: Viscoelastic Creep Analysis Framework
+Rocheville, E. J. (2026). AM Creep Analysis: Viscoelastic Creep Analysis Framework
 for Additively Manufactured Polymers (Version 1.0.0) [Computer software].
 Zenodo. https://doi.org/<DOI>
 ```

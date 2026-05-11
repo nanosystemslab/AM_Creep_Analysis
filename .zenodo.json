@@ -3,7 +3,7 @@
   "description": "Python framework for analyzing viscoelastic creep behavior in additively manufactured Tough1500 photopolymer resin from nanoindentation, bulk compression, and tensile testing. Implements 16 viscoelastic creep models (Burgers, generalized Kelvin-Voigt, Prony series, Peng stress-lock with optional viscoplastic dashpot), compliance calculators for flat punch / Berkovich / conical / frustum indenters, and a Time-Stress Superposition master-curve construction pipeline.",
   "creators": [
     {
-      "name": "Roche, Ethan",
+      "name": "Rocheville, Ethan Jon",
       "affiliation": "Nanosystems Lab"
     }
   ],
