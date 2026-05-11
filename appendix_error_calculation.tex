@@ -1,0 +1,139 @@
+% ============================================================================
+% Appendix: Error Calculation in Plots
+%
+% Required packages (add to preamble if not already present):
+%   \usepackage{amsmath}
+%   \usepackage{amssymb}
+%   \usepackage{verbatim}     % for the ASCII flow diagram in \begin{verbatim}
+% ============================================================================
+
+\chapter{Error Calculation in Plots}
+\label{app:error-calculation}
+
+All shaded bands (and error bars) shown in the averaged compliance, displacement,
+and strain plots represent the \emph{standard error of the mean} (SEM) computed
+\emph{across replicate test runs}, not within a single run. The full procedure
+is implemented in \texttt{src/data\_utils.py} (averaging) and
+\texttt{src/plotting\_functions.py} (rendering).
+
+\section{Aggregating Replicate Runs onto a Common $x$-grid}
+\label{sec:err-align}
+
+For a given folder of replicate tests, each run produces a time series
+$(x_i, y_i)$, where $x_i$ is the independent variable (e.g.\ test time) and
+$y_i$ is the dependent variable (e.g.\ creep compliance). Because runs are
+sampled at slightly different time points, the data must be aligned before any
+cross-run statistic can be computed. Two alignment modes are supported.
+
+\paragraph{Mode 1 -- Binned averaging}
+(\texttt{average\_data\_with\_bins}, \texttt{sem\_by\_run=True}):
+\begin{itemize}
+  \item Construct $B$ bin edges across the pooled $x$-range
+        (linear by default, log-spaced if \texttt{--log\_x} is set, or
+        quantile-based if \texttt{--adaptive} is set).
+  \item For each run independently, group its samples by bin and take the
+        per-bin mean. This yields a matrix
+        $Y \in \mathbb{R}^{R \times B}$, where $R$ is the number of runs and
+        $B$ is the number of bins.
+\end{itemize}
+
+\paragraph{Mode 2 -- Interpolated averaging}
+(\texttt{average\_data\_no\_bins}):
+\begin{itemize}
+  \item Pick the longest valid run as the reference $x$-grid $x_{\text{ref}}$,
+        after excluding any run whose $x$-span is less than $50\%$ of the
+        median span (truncated runs are dropped).
+  \item Linearly interpolate each remaining run onto $x_{\text{ref}}$
+        (NaN outside its native range).
+  \item This again yields a matrix $Y \in \mathbb{R}^{R \times B}$ with
+        $B = |x_{\text{ref}}|$.
+\end{itemize}
+
+In both modes, each column of $Y$ contains the values of all runs at one
+$x$-location.
+
+\section{Per-$x$ Mean, Standard Deviation, and Sample Size}
+\label{sec:err-perx}
+
+For each column $j$ (each bin or each grid point) we compute
+%
+\begin{equation}
+  \bar{y}_j \;=\; \frac{1}{n_j} \sum_{i \in V_j} Y_{ij},
+  \qquad
+  s_j \;=\; \sqrt{\frac{1}{n_j} \sum_{i \in V_j}
+                  \bigl(Y_{ij} - \bar{y}_j\bigr)^2},
+  \qquad
+  n_j \;=\; |V_j|,
+  \label{eq:per-x-stats}
+\end{equation}
+%
+where $V_j$ is the set of runs that contribute a finite value at column $j$.
+The standard deviation uses the population convention
+($\text{ddof} = 0$, i.e.\ divide by $n_j$ rather than $n_j - 1$); see
+\texttt{np.nanstd(..., ddof=0)} in \texttt{average\_data\_with\_bins} and
+\texttt{average\_data\_no\_bins}. These three quantities are stored as
+\verb|<col>_mean|, \verb|<col>_std|, and \verb|<col>_n| on the returned
+DataFrame.
+
+\section{Conversion from Standard Deviation to Standard Error}
+\label{sec:err-sem}
+
+The plotted band is the standard error of the mean, obtained from the per-column
+standard deviation by dividing by the square root of the run count. This is
+done in \texttt{\_std\_to\_sem} in \texttt{src/plotting\_functions.py}:
+%
+\begin{equation}
+  \mathrm{SEM}_j \;=\; \frac{s_j}{\sqrt{n_j}}.
+  \label{eq:sem}
+\end{equation}
+%
+When $n_j < 2$ the SEM is undefined and is set to NaN (no band is drawn at that
+$x$). The SEM characterises the uncertainty of the \emph{across-run mean},
+i.e.\ how reproducibly the cohort estimates the central tendency of the
+underlying response. This is distinct from the spread of individual runs
+(the standard deviation). SEM is the appropriate metric when the quantity of
+interest is the mean compliance/displacement curve of the material rather than
+the run-to-run variability itself.
+
+\section{What Is Rendered}
+\label{sec:err-render}
+
+For each averaged trace the plot shows:
+%
+\begin{itemize}
+  \item the \textbf{line} at $\bar{y}_j$ versus $x_j$ (per-$x$ cohort mean);
+  \item a \textbf{shaded band} between
+        $\bar{y}_j - k \cdot \mathrm{SEM}_j$ and
+        $\bar{y}_j + k \cdot \mathrm{SEM}_j$, where $k$ is the optional
+        \texttt{--error\_scale} multiplier
+        (default $k = 1$, i.e.\ $\pm 1\,\mathrm{SEM}$, an approximate $68\%$
+        confidence band under approximate normality of the cohort mean).
+        In free-style scatter mode (\texttt{--fs} / \texttt{--fs\_lines}) the
+        band is replaced by matching error bars.
+\end{itemize}
+
+Passing \texttt{--nosem} swaps the SEM band for the raw standard deviation
+$s_j$, and \texttt{--error\_scale K} scales the band by an arbitrary factor
+$K$ (e.g.\ $K = 1.96$ for an approximate $95\%$ interval).
+
+\section{Summary}
+\label{sec:err-summary}
+
+\begin{verbatim}
+Replicate runs --> align (bin or interpolate) --> Y in R^{R x B}
+                                                    |
+                                ,-------------------+-------------------.
+                                v                   v                   v
+                         mean y_j            std s_j (ddof=0)        n_j (>= 2)
+                                                    |
+                                                    v
+                                          SEM_j = s_j / sqrt(n_j)
+                                                    |
+                                                    v
+                                       plot: y_j +/- k * SEM_j  (k = error_scale)
+\end{verbatim}
+
+The convention applied to every averaged figure in this work is therefore:
+lines are cohort means across replicates, and shaded bands are
+$\pm 1\,\mathrm{SEM}$ of that cohort mean, computed independently at each
+$x$-location.

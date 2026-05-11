@@ -1,0 +1,25 @@
+{
+  "title": "AM Creep Analysis: Viscoelastic Creep Analysis Framework for Additively Manufactured Polymers",
+  "description": "Python framework for analyzing viscoelastic creep behavior in additively manufactured Tough1500 photopolymer resin from nanoindentation, bulk compression, and tensile testing. Implements 16 viscoelastic creep models (Burgers, generalized Kelvin-Voigt, Prony series, Peng stress-lock with optional viscoplastic dashpot), compliance calculators for flat punch / Berkovich / conical / frustum indenters, and a Time-Stress Superposition master-curve construction pipeline.",
+  "creators": [
+    {
+      "name": "Roche, Ethan",
+      "affiliation": "Nanosystems Lab"
+    }
+  ],
+  "keywords": [
+    "additive manufacturing",
+    "viscoelasticity",
+    "creep",
+    "nanoindentation",
+    "time-stress superposition",
+    "Tough1500",
+    "photopolymer",
+    "generalized Kelvin-Voigt",
+    "Peng stress-lock"
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "language": "eng"
+}
