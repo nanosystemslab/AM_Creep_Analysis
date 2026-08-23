@@ -1,7 +1,7 @@
 # AM Creep Analysis Framework
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20128706.svg)](https://doi.org/10.5281/zenodo.20128706)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20128705.svg)](https://doi.org/10.5281/zenodo.20128705)
 
 Python framework for analyzing viscoelastic creep behavior in additively manufactured
 Tough1500 photopolymer resin from nanoindentation, bulk compression, and tensile testing.
@@ -61,17 +61,19 @@ python src/nanoindent/nano_master.py
 ## Citation
 
 If you use this software, please cite it via the metadata in
-[`CITATION.cff`](CITATION.cff). A versioned DOI is published on
-Zenodo for each tagged release; the v1.0.0 DOI is
+[`CITATION.cff`](CITATION.cff). The DOI badge above is the **concept DOI** —
+it always resolves to the latest archived release. The version DOI for the
+current release (v1.0.0) is
 [`10.5281/zenodo.20128706`](https://doi.org/10.5281/zenodo.20128706).
 
 ```
 Rocheville, E. J. (2026). AM Creep Analysis: Viscoelastic Creep Analysis Framework
 for Additively Manufactured Polymers (Version 1.0.0) [Computer software].
-Zenodo. https://doi.org/10.5281/zenodo.20128706
+Zenodo. https://doi.org/10.5281/zenodo.20128705
 ```
 
-(Replace `<DOI>` with the Zenodo DOI minted at release time.)
+To pin a specific archived snapshot, substitute the version DOI
+(currently `10.5281/zenodo.20128706` for v1.0.0) for the concept DOI.
 
 ## License
 

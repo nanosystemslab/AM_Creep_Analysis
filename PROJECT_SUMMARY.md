@@ -572,12 +572,13 @@ is in [`CITATION.cff`](CITATION.cff) and [`.zenodo.json`](.zenodo.json).
 ```
 Rocheville, E. J. (2026). AM Creep Analysis: Viscoelastic Creep Analysis Framework
 for Additively Manufactured Polymers (Version 1.0.0) [Computer software].
-Zenodo. https://doi.org/10.5281/zenodo.20128706
+Zenodo. https://doi.org/10.5281/zenodo.20128705
 ```
 
-Zenodo mints a versioned DOI automatically for each GitHub release once the
-repository is enabled in the Zenodo–GitHub integration (Settings → Webhooks
-on Zenodo, then create a tagged release on GitHub).
+The DOI above is the **concept DOI** (`10.5281/zenodo.20128705`), which always
+resolves to the latest archived release. Each tagged release also receives its
+own version DOI (`10.5281/zenodo.20128706` for v1.0.0); use that to pin an exact
+archived snapshot.
 
 ---
 
